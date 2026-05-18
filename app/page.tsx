@@ -237,7 +237,7 @@ export default function HomePage() {
             </div>
             <Link
               href="/contact"
-              className="shrink-0 bg-gray-800 hover:bg-gray-700 text-gray border-2 font-semibold px-6 py-3 rounded transition-colors text-sm whitespace-nowrap"
+              className="shrink-0 bg-gray-800 text-gray-50 hover:bg-gray-700 text-gray border-2 font-semibold px-6 py-3 rounded transition-colors text-sm whitespace-nowrap"
             >
               Talk to an Expert
             </Link>
