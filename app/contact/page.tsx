@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { Metadata } from "next";
+import { contactSchema } from "@/lib/validations/contact";
 
 const industries = [
   "Hospitality",
@@ -14,6 +15,8 @@ const industries = [
 ];
 
 export default function ContactPage() {
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({
     name: "",
@@ -33,7 +36,27 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.MouseEvent) => {
     e.preventDefault();
 
+    setErrors({});
+
+    const result = contactSchema.safeParse(form);
+
+    if (!result.success) {
+      const fieldErrors: Record<string, string> = {};
+
+      result.error.issues.forEach((err) => {
+        const field = err.path[0] as string;
+
+        if (field) {
+          fieldErrors[field] = err.message;
+        }
+      });
+      setErrors(fieldErrors);
+      return;
+    }
+
     try {
+      setLoading(true);
+
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
@@ -58,6 +81,8 @@ export default function ContactPage() {
       }
     } catch (error) {
       alert("Something went wrong.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -132,6 +157,11 @@ export default function ContactPage() {
                         placeholder="Your name"
                         className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-300 transition-colors"
                       />
+                      {errors.name && (
+                        <p className="text-red-500 text-xs mt-1">
+                          {errors.name}
+                        </p>
+                      )}
                     </div>
                     <div>
                       <label className="block text-gray-700 text-xs font-semibold mb-1.5">
@@ -161,6 +191,11 @@ export default function ContactPage() {
                         placeholder="you@company.com"
                         className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-300 transition-colors"
                       />
+                      {errors.email && (
+                        <p className="text-red-500 text-xs mt-1">
+                          {errors.email}
+                        </p>
+                      )}
                     </div>
                     <div>
                       <label className="block text-gray-700 text-xs font-semibold mb-1.5">
@@ -175,6 +210,11 @@ export default function ContactPage() {
                         placeholder="+91 XXXXX XXXXX"
                         className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-300 transition-colors"
                       />
+                      {errors.phone && (
+                        <p className="text-red-500 text-xs mt-1">
+                          {errors.phone}
+                        </p>
+                      )}
                     </div>
                   </div>
                   <div>
@@ -209,12 +249,18 @@ export default function ContactPage() {
                       placeholder="Describe your technology requirements or ask us anything..."
                       className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-300 transition-colors resize-none"
                     />
+                    {errors.message && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors.message}
+                      </p>
+                    )}
                   </div>
                   <button
                     onClick={handleSubmit}
-                    className="w-full bg-gray-800 hover:bg-gray-700 text-white font-semibold py-3.5 rounded-lg transition-colors text-sm"
+                    disabled={loading}
+                    className="w-full bg-gray-800 hover:bg-gray-700 disabled:opacity-50 text-white font-semibold py-3.5 rounded-lg transition-colors text-sm"
                   >
-                    Submit Message
+                    {loading ? "Sending..." : "Submit Message"}
                   </button>
                 </div>
               )}
