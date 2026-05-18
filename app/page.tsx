@@ -226,7 +226,7 @@ export default function HomePage() {
         <div className="max-w-4xl mx-auto">
           <div className="bg-white border-l-4 border-gray-700 rounded-xl px-8 py-7 flex flex-col md:flex-row items-start md:items-center gap-6 shadow-sm">
             <div className="flex-1">
-              <h3 className="font-display font-bold text-gray-900 text-xl mb-2">
+              <h3 className="font-display font-bold text-gray-50 text-xl mb-2">
                 Flexible Financing Available
               </h3>
               <p className="text-gray-600 text-sm leading-relaxed">

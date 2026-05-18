@@ -87,9 +87,9 @@ export default function SolutionsPage() {
       <section className="bg-gray-800 py-5 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
           <p className="text-gray-300 text-center sm:text-left">
-            <strong className="text-white">Flexible Financing:</strong> Deferred
-            Payment Options or OPEX Model for Medium &amp; Large Enterprises.
-            Reduce CapEx. Focus on Growth.
+            <strong className="text-white">Flexible Financing: </strong>
+            Deferred Payment Options or OPEX Model for Medium &amp; Large
+            Enterprises. Reduce CapEx. Focus on Growth.
           </p>
           <Link
             href="/contact"

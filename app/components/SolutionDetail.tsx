@@ -111,7 +111,7 @@ export default function SolutionDetail({
       <section className="bg-gray-900 py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="mb-12 text-center">
-            <h2 className="font-display text-3xl font-bold text-gray-900">
+            <h2 className="font-display text-3xl font-bold text-gray-50">
               Key Advantages
             </h2>
           </div>
@@ -122,7 +122,7 @@ export default function SolutionDetail({
                 className="bg-gray-800 border border-gray-700 rounded-xl p-6"
               >
                 <span className="text-2xl mb-4 block">{h.icon}</span>
-                <h4 className="font-display font-semibold text-gray-900 text-sm mb-2">
+                <h4 className="font-display font-semibold text-gray-50 text-sm mb-2">
                   {h.title}
                 </h4>
                 <p className="text-gray-400 text-sm leading-relaxed">
