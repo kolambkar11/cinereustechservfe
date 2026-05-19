@@ -245,18 +245,6 @@ Optimized for:
 
 ---
 
-# 📸 Screenshots
-
-> Add screenshots later for better GitHub presentation.
-
-Example:
-
-```md
-![Homepage](./public/screenshots/home.png)
-```
-
----
-
 # 🔐 SEO & Performance
 
 - Optimized metadata
