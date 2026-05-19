@@ -1,5 +1,13 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+
+import {
+  FadeUp,
+  FadeIn,
+  StaggerParent,
+  StaggerChild,
+  CountUp,
+} from "./animation";
 import { CTABanner, SectionHeader } from "./components/UI";
 
 export const metadata: Metadata = {
@@ -109,190 +117,230 @@ export default function HomePage() {
       <section className="hero-pattern min-h-screen flex items-center pt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 w-full">
           <div className="max-w-3xl">
-            <span className="inline-block text-white text-xs font-semibold tracking-widest uppercase mb-6 border border-gray-700 px-3 py-1 rounded-full">
-              Mumbai-Based Technology Solutions
-            </span>
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight text-balance mb-6">
-              Empowering Hospitality, Education &amp; Enterprises with{" "}
-              <span className="text-gray-300">Future-Ready Technology</span>
-            </h1>
-            <p className="text-white text-lg sm:text-xl leading-relaxed mb-4">
-              Hardware | Software | Data Centers | Forensics | Building
-              Automation
-            </p>
-            <p className="text-white text-sm mb-10 flex items-center gap-2">
-              <span className="inline-block w-4 h-px bg-gray-600" />
-              Deferred Payment &amp; OPEX Models for Medium &amp; Large
-              Enterprises
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link
-                href="/solutions"
-                className="bg-gray-600 hover:bg-gray-500 text-white font-semibold px-8 py-3.5 rounded transition-colors border border-gray-500 text-center"
-              >
-                Explore Solutions
-              </Link>
-              <Link
-                href="/contact"
-                className="border border-gray-600 text-white hover:text-white hover:border-gray-400 font-semibold px-8 py-3.5 rounded transition-colors text-center"
-              >
-                Request a Demo / Quote
-              </Link>
-            </div>
+            {/* Eyebrow — fastest, no delay */}
+            <FadeUp delay={0.05}>
+              <span className="inline-block text-gray-400 text-xs font-semibold tracking-widest uppercase mb-6 border border-gray-700 px-3 py-1 rounded-full">
+                Mumbai-Based Technology Solutions
+              </span>
+            </FadeUp>
+
+            {/* Headline */}
+            <FadeUp delay={0.15}>
+              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight text-balance mb-6">
+                Empowering Hospitality, Education &amp; Enterprises with{" "}
+                <span className="text-gray-300">Future-Ready Technology</span>
+              </h1>
+            </FadeUp>
+
+            {/* Subtext */}
+            <FadeUp delay={0.25}>
+              <p className="text-gray-300 text-lg sm:text-xl leading-relaxed mb-4">
+                Hardware | Software | Data Centers | Forensics | Building
+                Automation
+              </p>
+              <p className="text-gray-400 text-sm mb-10 flex items-center gap-2">
+                <span className="inline-block w-4 h-px bg-gray-600" />
+                Deferred Payment &amp; OPEX Models for Medium &amp; Large
+                Enterprises
+              </p>
+            </FadeUp>
+
+            {/* CTAs */}
+            <FadeUp delay={0.35}>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link
+                  href="/solutions"
+                  className="bg-gray-600 hover:bg-gray-500 text-white font-semibold px-8 py-3.5 rounded transition-colors border border-gray-500 text-center"
+                >
+                  Explore Solutions
+                </Link>
+                <Link
+                  href="/contact"
+                  className="border border-gray-600 text-gray-300 hover:text-white hover:border-gray-400 font-semibold px-8 py-3.5 rounded transition-colors text-center"
+                >
+                  Request a Demo / Quote
+                </Link>
+              </div>
+            </FadeUp>
           </div>
         </div>
 
-        {/* Decorative floating stats */}
+        {/* Floating stats — CountUp on scroll into view */}
         <div className="hidden lg:flex absolute right-10 top-1/2 -translate-y-1/2 flex-col gap-4">
           {[
-            { n: "5+", l: "Industry Verticals" },
-            { n: "20+", l: "Technology Partners" },
-            { n: "24×7", l: "Support & NOC/SOC" },
-          ].map((s) => (
-            <div
-              key={s.l}
-              className="bg-gray-800/60 backdrop-blur-sm border border-gray-700 rounded-xl px-6 py-4 text-center"
-            >
-              <div className="font-display font-bold text-2xl text-white">
-                {s.n}
+            { n: 5, suffix: "+", l: "Industry Verticals" },
+            { n: 20, suffix: "+", l: "Technology Partners" },
+          ].map((s, i) => (
+            <FadeUp key={s.l} delay={0.4 + i * 0.1}>
+              <div className="bg-gray-800/60 backdrop-blur-sm border border-gray-700 rounded-xl px-6 py-4 text-center">
+                <div className="font-display font-bold text-2xl text-white">
+                  <CountUp to={s.n} suffix={s.suffix} />
+                </div>
+                <div className="text-gray-400 text-xs mt-1">{s.l}</div>
               </div>
-              <div className="text-white text-xs mt-1">{s.l}</div>
-            </div>
+            </FadeUp>
           ))}
+          <FadeUp delay={0.6}>
+            <div className="bg-gray-800/60 backdrop-blur-sm border border-gray-700 rounded-xl px-6 py-4 text-center">
+              <div className="font-display font-bold text-2xl text-white">
+                24×7
+              </div>
+              <div className="text-gray-400 text-xs mt-1">
+                Support &amp; NOC/SOC
+              </div>
+            </div>
+          </FadeUp>
         </div>
       </section>
 
       {/* ── Our Expertise ─────────────────────────────────────── */}
       <section className="bg-gray-50 py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <SectionHeader
-            eyebrow="Our Expertise"
-            title="Solutions Built for Your Industry"
-            subtitle="We deliver tailored technology solutions across hospitality, education, enterprise, and government sectors."
-          />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
+          <FadeUp>
+            <SectionHeader
+              eyebrow="Our Expertise"
+              title="Solutions Built for Your Industry"
+              subtitle="We deliver tailored technology solutions across hospitality, education, enterprise, and government sectors."
+            />
+          </FadeUp>
+
+          {/* Staggered expertise cards */}
+          <StaggerParent className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
             {expertise.map((item) => (
-              <Link
-                key={item.title}
-                href={item.href}
-                className="card-hover group bg-white border border-gray-200 rounded-xl p-6 flex flex-col gap-3"
-              >
-                <span className="text-3xl">{item.icon}</span>
-                <h3 className="font-display font-semibold text-gray-900 text-base leading-snug">
-                  {item.title}
-                </h3>
-                <p className="text-gray-500 text-sm leading-relaxed">
-                  {item.desc}
-                </p>
-                <span className="text-gray-700 text-xs font-semibold mt-auto group-hover:underline">
-                  Learn More →
-                </span>
-              </Link>
+              <StaggerChild key={item.title}>
+                <Link
+                  href={item.href}
+                  className="card-hover group bg-white border border-gray-200 rounded-xl p-6 flex flex-col gap-3 h-full"
+                >
+                  <span className="text-3xl">{item.icon}</span>
+                  <h3 className="font-display font-semibold text-gray-900 text-base leading-snug">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-500 text-sm leading-relaxed">
+                    {item.desc}
+                  </p>
+                  <span className="text-gray-700 text-xs font-semibold mt-auto group-hover:underline">
+                    Learn More →
+                  </span>
+                </Link>
+              </StaggerChild>
             ))}
-          </div>
+          </StaggerParent>
         </div>
       </section>
 
       {/* ── Why Choose Us ─────────────────────────────────────── */}
       <section className="bg-gray-900 py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <SectionHeader
-            eyebrow="Why Cinereus Techserv"
-            title="The Partner You Can Rely On"
-            subtitle="We combine technology depth with flexible commercial models to deliver real business outcomes."
-            light
-          />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <FadeUp>
+            <SectionHeader
+              eyebrow="Why Cinereus Techserv"
+              title="The Partner You Can Rely On"
+              subtitle="We combine technology depth with flexible commercial models to deliver real business outcomes."
+              light
+            />
+          </FadeUp>
+
+          {/* Staggered benefit cards */}
+          <StaggerParent className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {benefits.map((b) => (
-              <div
-                key={b.title}
-                className="bg-gray-800 border border-gray-700 rounded-xl p-6 hover:border-gray-600 transition-colors"
-              >
-                <span className="text-2xl mb-4 block">{b.icon}</span>
-                <h3 className="font-display font-semibold text-gray-400 text-base mb-2">
-                  {b.title}
-                </h3>
-                <p className="text-gray-400 text-sm leading-relaxed">
-                  {b.desc}
-                </p>
-              </div>
+              <StaggerChild key={b.title}>
+                <div className="bg-gray-800 border border-gray-700 rounded-xl p-6 hover:border-gray-600 transition-colors h-full">
+                  <span className="text-2xl mb-4 block">{b.icon}</span>
+                  <h3 className="font-display font-semibold text-white text-base mb-2">
+                    {b.title}
+                  </h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">
+                    {b.desc}
+                  </p>
+                </div>
+              </StaggerChild>
             ))}
-          </div>
+          </StaggerParent>
         </div>
       </section>
 
       {/* ── OPEX Highlight ────────────────────────────────────── */}
       <section className="bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
-          <div className="bg-white border-l-4 border-gray-700 rounded-xl px-8 py-7 flex flex-col md:flex-row items-start md:items-center gap-6 shadow-sm">
-            <div className="flex-1">
-              <h3 className="font-display font-bold text-gray-50 text-xl mb-2">
-                Flexible Financing Available
-              </h3>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                <strong>Deferred Payment Options or OPEX Model</strong> for
-                Medium &amp; Large Enterprises. Reduce CapEx. Focus on Growth.
-                Ask us how.
-              </p>
+          <FadeUp>
+            <div className="bg-white border-l-4 border-gray-700 rounded-xl px-8 py-7 flex flex-col md:flex-row items-start md:items-center gap-6 shadow-sm">
+              <div className="flex-1">
+                <h3 className="font-display font-bold text-gray-900 text-xl mb-2">
+                  Flexible Financing Available
+                </h3>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  <strong>Deferred Payment Options or OPEX Model</strong> for
+                  Medium &amp; Large Enterprises. Reduce CapEx. Focus on Growth.
+                  Ask us how.
+                </p>
+              </div>
+              <Link
+                href="/contact"
+                className="shrink-0 bg-gray-800 hover:bg-gray-700 text-white font-semibold px-6 py-3 rounded transition-colors text-sm whitespace-nowrap"
+              >
+                Talk to an Expert
+              </Link>
             </div>
-            <Link
-              href="/contact"
-              className="shrink-0 bg-gray-800 text-gray-50 hover:bg-gray-700 text-gray border-2 font-semibold px-6 py-3 rounded transition-colors text-sm whitespace-nowrap"
-            >
-              Talk to an Expert
-            </Link>
-          </div>
+          </FadeUp>
         </div>
       </section>
 
       {/* ── Featured Solutions ────────────────────────────────── */}
       <section className="bg-white py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <SectionHeader
-            eyebrow="Featured Solutions"
-            title="What We Deliver"
-            subtitle="End-to-end technology solutions configured for your specific industry requirements."
-          />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <FadeUp>
+            <SectionHeader
+              eyebrow="Featured Solutions"
+              title="What We Deliver"
+              subtitle="End-to-end technology solutions configured for your specific industry requirements."
+            />
+          </FadeUp>
+
+          {/* Staggered solution cards */}
+          <StaggerParent className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {featuredSolutions.map((s, i) => (
-              <Link
-                key={s.title}
-                href={s.href}
-                className="card-hover group relative bg-gray-900 rounded-2xl p-7 overflow-hidden"
-              >
-                <div
-                  className="absolute inset-0 opacity-10"
-                  style={{
-                    background: `radial-gradient(circle at ${i % 2 === 0 ? "20% 80%" : "80% 20%"}, #9ca3af, transparent 70%)`,
-                  }}
-                />
-                <span className="relative inline-block text-gray-400 text-xs font-semibold tracking-widest uppercase mb-4 border border-gray-700 px-2 py-0.5 rounded-full">
-                  {s.tag}
-                </span>
-                <h3 className="relative font-display font-bold text-white text-lg mb-3">
-                  {s.title}
-                </h3>
-                <p className="relative text-gray-400 text-sm leading-relaxed mb-6">
-                  {s.desc}
-                </p>
-                <span className="relative text-gray-300 text-xs font-semibold  transition-colors">
-                  Explore →
-                </span>
-              </Link>
+              <StaggerChild key={s.title}>
+                <Link
+                  href={s.href}
+                  className="card-hover group relative bg-gray-900 rounded-2xl p-7 overflow-hidden flex flex-col h-full"
+                >
+                  <div
+                    className="absolute inset-0 opacity-10"
+                    style={{
+                      background: `radial-gradient(circle at ${i % 2 === 0 ? "20% 80%" : "80% 20%"}, #9ca3af, transparent 70%)`,
+                    }}
+                  />
+                  <span className="relative inline-block text-gray-400 text-xs font-semibold tracking-widest uppercase mb-4 border border-gray-700 px-2 py-0.5 rounded-full w-fit">
+                    {s.tag}
+                  </span>
+                  <h3 className="relative font-display font-bold text-white text-lg mb-3">
+                    {s.title}
+                  </h3>
+                  <p className="relative text-gray-400 text-sm leading-relaxed mb-6 flex-1">
+                    {s.desc}
+                  </p>
+                  <span className="relative text-gray-300 text-xs font-semibold group-hover:text-white transition-colors">
+                    Explore →
+                  </span>
+                </Link>
+              </StaggerChild>
             ))}
-          </div>
+          </StaggerParent>
         </div>
       </section>
 
       {/* ── CTA Banner ───────────────────────────────────────── */}
-      <CTABanner
-        title="Ready to Transform Your Operations?"
-        subtitle="Get in Touch Today. Our experts are ready to design the right solution for you."
-        primaryLabel="Contact Us"
-        primaryHref="/contact"
-        secondaryLabel="View All Solutions"
-        secondaryHref="/solutions"
-      />
+      <FadeIn>
+        <CTABanner
+          title="Ready to Transform Your Operations?"
+          subtitle="Get in Touch Today. Our experts are ready to design the right solution for you."
+          primaryLabel="Contact Us"
+          primaryHref="/contact"
+          secondaryLabel="View All Solutions"
+          secondaryHref="/solutions"
+        />
+      </FadeIn>
     </>
   );
 }

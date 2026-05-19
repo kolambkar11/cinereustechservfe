@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-
+import { FadeIn, FadeUp, StaggerChild, StaggerParent } from "../animation";
 const products = [
   // Hardware
   {
@@ -191,75 +191,84 @@ export default function ProductsPage() {
     <>
       {/* Hero */}
       <section className="hero-pattern pt-32 pb-20 px-4 sm:px-6 lg:px-8 text-center">
-        <div className="max-w-3xl mx-auto">
-          <span className="inline-block text-gray-400 text-xs font-semibold tracking-widest uppercase mb-4 border border-gray-700 px-3 py-1 rounded-full">
-            Products
-          </span>
-          <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
-            Hardware &amp; Software Products
-          </h1>
-          <p className="text-gray-300 text-base sm:text-lg">
-            IP Phones, Interactive Panels, Servers, Forensic Tools, ERP/LMS and
-            more — sourced from certified global partners.
-          </p>
-        </div>
+        <FadeUp delay={0.05}>
+          <div className="max-w-3xl mx-auto">
+            <span className="inline-block text-gray-400 text-xs font-semibold tracking-widest uppercase mb-4 border border-gray-700 px-3 py-1 rounded-full">
+              Products
+            </span>
+            <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+              Hardware &amp; Software Products
+            </h1>
+            <p className="text-gray-300 text-base sm:text-lg">
+              IP Phones, Interactive Panels, Servers, Forensic Tools, ERP/LMS
+              and more — sourced from certified global partners.
+            </p>
+          </div>
+        </FadeUp>
       </section>
 
       {/* Filters */}
       <section className="bg-white border-b border-gray-200 py-5 px-4 sm:px-6 lg:px-8 sticky top-16 z-40">
-        <div className="max-w-7xl mx-auto flex flex-wrap gap-4 items-center">
-          <div className="flex gap-2 flex-wrap">
-            <span className="text-gray-500 text-xs font-semibold uppercase tracking-wider self-center mr-1">
-              Type:
-            </span>
-            {categories.map((c) => (
-              <button
-                key={c}
-                onClick={() => setCat(c)}
-                className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-colors ${
-                  cat === c
-                    ? "bg-gray-800 text-white"
-                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                }`}
-              >
-                {c}
-              </button>
-            ))}
+        <FadeIn>
+          <div className="max-w-7xl mx-auto flex flex-wrap gap-4 items-center">
+            <div className="flex gap-2 flex-wrap">
+              <span className="text-gray-500 text-xs font-semibold uppercase tracking-wider self-center mr-1">
+                Type:
+              </span>
+              {categories.map((c) => (
+                <button
+                  key={c}
+                  onClick={() => setCat(c)}
+                  className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-colors ${
+                    cat === c
+                      ? "bg-gray-800 text-white"
+                      : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                  }`}
+                >
+                  {c}
+                </button>
+              ))}
+            </div>
+            <div className="flex gap-2 flex-wrap">
+              <span className="text-gray-500 text-xs font-semibold uppercase tracking-wider self-center mr-1">
+                Industry:
+              </span>
+              {industries.map((i) => (
+                <button
+                  key={i}
+                  onClick={() => setInd(i)}
+                  className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-colors ${
+                    ind === i
+                      ? "bg-gray-800 text-white"
+                      : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                  }`}
+                >
+                  {i}
+                </button>
+              ))}
+            </div>
           </div>
-          <div className="flex gap-2 flex-wrap">
-            <span className="text-gray-500 text-xs font-semibold uppercase tracking-wider self-center mr-1">
-              Industry:
-            </span>
-            {industries.map((i) => (
-              <button
-                key={i}
-                onClick={() => setInd(i)}
-                className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-colors ${
-                  ind === i
-                    ? "bg-gray-800 text-white"
-                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                }`}
-              >
-                {i}
-              </button>
-            ))}
-          </div>
-        </div>
+        </FadeIn>
       </section>
 
       {/* Products Grid */}
       <section className="bg-gray-50 py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <p className="text-gray-500 text-sm mb-8">
-            Showing {filtered.length} product{filtered.length !== 1 ? "s" : ""}
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+          <FadeUp delay={0.05}>
+            <p className="text-gray-500 text-sm mb-8">
+              Showing {filtered.length} product
+              {filtered.length !== 1 ? "s" : ""}
+            </p>
+          </FadeUp>
+          <StaggerParent className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
             {filtered.map((p) => (
-              <div
+              <StaggerChild
                 key={p.id}
                 className="bg-white border border-gray-200 rounded-xl p-6 flex flex-col group hover:border-gray-400 hover:shadow-md transition-all card-hover"
               >
-                <span className="text-3xl mb-4 block">{p.icon}</span>
+                <span className="text-3xl mb-4 block group-hover:scale-110 transition-transform duration-300">
+                  {p.icon}
+                </span>
                 <div className="flex gap-2 mb-3">
                   <span className="text-gray-500 text-[10px] font-semibold tracking-widest uppercase border border-gray-200 px-2 py-0.5 rounded-full">
                     {p.category}
@@ -280,29 +289,31 @@ export default function ProductsPage() {
                 >
                   Request Quote →
                 </Link>
-              </div>
+              </StaggerChild>
             ))}
-          </div>
+          </StaggerParent>
         </div>
       </section>
 
       {/* CTA */}
       <section className="bg-gray-900 py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="font-display text-2xl sm:text-3xl font-bold text-white mb-4">
-            Don&apos;t See What You&apos;re Looking For?
-          </h2>
-          <p className="text-gray-300 text-base mb-8">
-            We have access to a wide range of products through our partner
-            network. Contact us with your specific requirements.
-          </p>
-          <Link
-            href="/contact"
-            className="bg-gray-600 hover:bg-gray-500 text-white font-semibold px-8 py-3 rounded transition-colors border border-gray-500"
-          >
-            Contact Our Team
-          </Link>
-        </div>
+        <FadeUp delay={0.05}>
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-white mb-4">
+              Don&apos;t See What You&apos;re Looking For?
+            </h2>
+            <p className="text-gray-300 text-base mb-8">
+              We have access to a wide range of products through our partner
+              network. Contact us with your specific requirements.
+            </p>
+            <Link
+              href="/contact"
+              className="bg-gray-600 hover:bg-gray-500 text-white font-semibold px-8 py-3 rounded transition-colors border border-gray-500"
+            >
+              Contact Our Team
+            </Link>
+          </div>
+        </FadeUp>
       </section>
     </>
   );

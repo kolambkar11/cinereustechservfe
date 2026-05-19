@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { FadeIn, FadeUp, StaggerChild, StaggerParent } from "../animation";
 import { CTABanner, PageHero } from "../components/UI";
 
 export const metadata: Metadata = {
@@ -64,22 +65,24 @@ export default function PartnersPage() {
       {/* Partners Grid */}
       <section className="bg-gray-50 py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-14">
-            <p className="text-gray-500 text-sm max-w-2xl mx-auto leading-relaxed">
-              Our strategic partnerships ensure reliability, performance, and
-              seamless integration for your hospitality, education, data center,
-              and forensic requirements.
-            </p>
-          </div>
+          <FadeUp delay={0.05}>
+            <div className="text-center mb-14">
+              <p className="text-gray-500 text-sm max-w-2xl mx-auto leading-relaxed">
+                Our strategic partnerships ensure reliability, performance, and
+                seamless integration for your hospitality, education, data
+                center, and forensic requirements.
+              </p>
+            </div>
+          </FadeUp>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+          <StaggerParent className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
             {partners.map((p) => (
-              <div
+              <StaggerChild
                 key={p.name}
                 className="bg-white border border-gray-200 rounded-xl p-5 flex flex-col items-center justify-center text-center gap-2 hover:border-gray-400 hover:shadow-md transition-all group cursor-default"
               >
                 {/* Logo placeholder with initials */}
-                <div className="w-12 h-12 bg-gray-100 group-hover:bg-gray-200 rounded-lg flex items-center justify-center transition-colors">
+                <div className="w-12 h-12 bg-gray-100 group-hover:bg-gray-200 group-hover:scale-110 rounded-lg flex items-center justify-center transition-all duration-300">
                   <span className="font-display font-bold text-gray-600 group-hover:text-gray-900 text-lg transition-colors">
                     {p.name.charAt(0)}
                   </span>
@@ -90,29 +93,32 @@ export default function PartnersPage() {
                 <span className="text-gray-400 text-[10px] leading-snug">
                   {p.category}
                 </span>
-              </div>
+              </StaggerChild>
             ))}
-          </div>
-
-          <p className="text-center text-gray-400 text-xs mt-10">
-            Proud authorized partners and implementation specialists. Contact us
-            for product availability and custom configurations.
-          </p>
+          </StaggerParent>
+          <FadeIn>
+            <p className="text-center text-gray-400 text-xs mt-10">
+              Proud authorized partners and implementation specialists. Contact
+              us for product availability and custom configurations.
+            </p>
+          </FadeIn>
         </div>
       </section>
 
       {/* Partner Categories */}
       <section className="bg-white py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-14">
-            <span className="text-xs font-semibold tracking-widest uppercase text-gray-500 mb-3 block">
-              Partnership Verticals
-            </span>
-            <h2 className="font-display text-3xl font-bold text-gray-900">
-              Solutions Across Every Category
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <FadeUp delay={0.05}>
+            <div className="text-center mb-14">
+              <span className="text-xs font-semibold tracking-widest uppercase text-gray-500 mb-3 block">
+                Partnership Verticals
+              </span>
+              <h2 className="font-display text-3xl font-bold text-gray-900">
+                Solutions Across Every Category
+              </h2>
+            </div>
+          </FadeUp>
+          <StaggerParent className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
                 cat: "Networking",
@@ -158,7 +164,10 @@ export default function PartnersPage() {
                 desc: "Digital forensics software, tools, and video surveillance.",
               },
             ].map((item) => (
-              <div key={item.cat} className="bg-gray-900 rounded-xl p-6">
+              <StaggerChild
+                key={item.cat}
+                className="bg-gray-900 rounded-xl p-6"
+              >
                 <span className="text-3xl mb-4 block">{item.icon}</span>
                 <h3 className="font-display font-bold text-white text-base mb-2">
                   {item.cat}
@@ -176,18 +185,19 @@ export default function PartnersPage() {
                     </span>
                   ))}
                 </div>
-              </div>
+              </StaggerChild>
             ))}
-          </div>
+          </StaggerParent>
         </div>
       </section>
-
-      <CTABanner
-        title="Become a Technology Partner"
-        subtitle="Interested in partnering with Cinereus Techserv? Let's explore how we can collaborate."
-        primaryLabel="Contact Us"
-        primaryHref="/contact"
-      />
+      <FadeIn>
+        <CTABanner
+          title="Become a Technology Partner"
+          subtitle="Interested in partnering with Cinereus Techserv? Let's explore how we can collaborate."
+          primaryLabel="Contact Us"
+          primaryHref="/contact"
+        />
+      </FadeIn>
     </>
   );
 }

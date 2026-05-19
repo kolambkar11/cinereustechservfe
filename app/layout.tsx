@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "./components/Navbar";
+import { PageTransition } from "./animation";
 import Footer from "./components/Footer";
 
 export const metadata: Metadata = {
@@ -28,13 +29,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <script src="https://cdn.tailwindcss.com"></script>
-      </head>
-
       <body className="font-body antialiased">
         <Navbar />
-        <main className="min-h-screen">{children}</main>
+        <main className="min-h-screen">
+          <PageTransition>{children}</PageTransition>
+        </main>
         <Footer />
       </body>
     </html>
