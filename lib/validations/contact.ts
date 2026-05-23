@@ -11,6 +11,8 @@ export const contactSchema = z.object({
 
   industry: z.string().optional(),
 
+  enquiryType: z.enum(["Sales", "Rental", "Implementation"]).optional(),
+
   message: z
     .string()
     .min(10, "Message must be at least 10 characters")

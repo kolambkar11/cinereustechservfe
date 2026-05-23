@@ -21,11 +21,12 @@ export async function POST(req: Request) {
       );
     }
 
-    const { name, company, email, phone, industry, message } = result.data;
+    const { name, company, email, phone, industry, enquiryType, message } =
+      result.data;
 
     await resend.emails.send({
-      from: "Website Contact <onboarding@resend.dev>",
-      to: "kolambkarashutosh@gmail.com",
+      from: "Enquiry <enquiry@cinereus-techserv.com>",
+      to: "Director@cinereus-techserv.com",
       subject: `New Inquiry from ${name}`,
 
       html: `
@@ -37,7 +38,7 @@ export async function POST(req: Request) {
           <p><strong>Email:</strong> ${email}</p>
           <p><strong>Phone:</strong> ${phone}</p>
           <p><strong>Industry:</strong> ${industry || "-"}</p>
-
+          <p><strong>Enquiry Type:</strong> ${enquiryType || "-"}</p>
           <h3>Message</h3>
 
           <p>${message}</p>

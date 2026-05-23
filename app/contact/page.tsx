@@ -25,8 +25,11 @@ export default function ContactPage() {
     email: "",
     phone: "",
     industry: "",
+    enquiryType: "",
     message: "",
   });
+
+  const enquiryTypes = ["Sales", "Rental", "Implementation"];
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -75,6 +78,7 @@ export default function ContactPage() {
           email: "",
           phone: "",
           industry: "",
+          enquiryType: "",
           message: "",
         });
       } else {
@@ -139,6 +143,7 @@ export default function ContactPage() {
                             email: "",
                             phone: "",
                             industry: "",
+                            enquiryType: "",
                             message: "",
                           });
                         }}
@@ -230,23 +235,50 @@ export default function ContactPage() {
                       </div>
                     </StaggerChild>
                     <StaggerChild>
-                      <div>
-                        <label className="block text-gray-700 text-xs font-semibold mb-1.5">
-                          Industry
-                        </label>
-                        <select
-                          name="industry"
-                          value={form.industry}
-                          onChange={handleChange}
-                          className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-800 focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-300 transition-colors bg-white"
-                        >
-                          <option value="">Select your industry</option>
-                          {industries.map((i) => (
-                            <option key={i} value={i}>
-                              {i}
-                            </option>
-                          ))}
-                        </select>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        {/* Industry */}
+                        <div>
+                          <label className="block text-gray-700 text-xs font-semibold mb-1.5">
+                            Industry
+                          </label>
+
+                          <select
+                            name="industry"
+                            value={form.industry}
+                            onChange={handleChange}
+                            className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-800 focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-300 transition-colors bg-white"
+                          >
+                            <option value="">Select your industry</option>
+
+                            {industries.map((i) => (
+                              <option key={i} value={i}>
+                                {i}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+
+                        {/* Enquiry Type */}
+                        <div>
+                          <label className="block text-gray-700 text-xs font-semibold mb-1.5">
+                            Enquiry Type
+                          </label>
+
+                          <select
+                            name="enquiryType"
+                            value={form.enquiryType}
+                            onChange={handleChange}
+                            className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-800 focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-300 transition-colors bg-white"
+                          >
+                            <option value="">Select enquiry type</option>
+
+                            {enquiryTypes.map((type) => (
+                              <option key={type} value={type}>
+                                {type}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
                       </div>
                     </StaggerChild>
                     <StaggerChild>
@@ -312,10 +344,10 @@ export default function ContactPage() {
                       Email
                     </p>
                     <a
-                      href="mailto:Cinereus2025@outlook.com"
+                      href="mailto:Enquiry@cinereus-techserv.com"
                       className="text-gray-300 hover:text-white transition-colors break-all"
                     >
-                      Cinereus2025@outlook.com
+                      Enquiry@cinereus-techserv.com
                     </a>
                   </div>
                   <div className="border-t border-gray-700 pt-4">

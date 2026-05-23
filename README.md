@@ -335,7 +335,7 @@ This project follows:
 
 For business inquiries:
 
-📧 Cinereus2025@outlook.com
+📧 Enquiry@cinereus-techserv.com
 
 📍 Worli, Mumbai, Maharashtra, India
 

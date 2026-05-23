@@ -24,21 +24,17 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-8 bg-gray-600 rounded flex items-center justify-center">
-                <span className="text-gray font-display font-bold text-sm">
-                  C
-                </span>
-              </div>
-              <div>
-                <span className="font-display font-bold text-gray text-base block">
-                  Cinereus Techserv
-                </span>
-                <span className="text-gray-500 text-[10px] tracking-widest uppercase">
-                  Pvt Ltd
-                </span>
-              </div>
-            </div>
+            <Link
+              href="/"
+              className="inline-flex items-center gap-3 mb-4 group"
+            >
+              {/* Main Logo */}
+              <img
+                src="/cinereus-logo-light.png"
+                alt="Cinereus Techserv"
+                className="h-18 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity"
+              />
+            </Link>
             <p className="text-gray-400 text-sm leading-relaxed">
               Future-ready IT hardware & software solutions for hospitality,
               education, and enterprises.
@@ -116,10 +112,10 @@ export default function Footer() {
               </p>
               <p>
                 <a
-                  href="mailto:Cinereus2025@outlook.com"
+                  href="mailto:Enquiry@cinereus-techserv.com"
                   className="hover:text-white transition-colors"
                 >
-                  Cinereus2025@outlook.com
+                  Enquiry@cinereus-techserv.com
                 </a>
               </p>
               <p className="text-gray-500 text-xs">

@@ -65,30 +65,16 @@ export default function Navbar() {
           {/* Logo */}
           <motion.div whileHover={{ y: -1 }}>
             <Link href="/" className="flex items-center gap-3">
-              <div
-                className={`w-9 h-9 rounded flex items-center justify-center transition-colors duration-300 ${
-                  scrolled ? "bg-gray-900" : "bg-white/20 backdrop-blur-sm"
-                }`}
-              >
-                <span className="text-white font-bold text-sm">C</span>
-              </div>
-
-              <div className="leading-tight">
-                <span
-                  className={`font-bold text-base tracking-tight block transition-colors duration-300 ${
-                    scrolled ? "text-gray-900" : "text-white"
-                  }`}
-                >
-                  Cinereus Techserv
-                </span>
-
-                <span
-                  className={`text-[10px] tracking-[0.2em] uppercase transition-colors duration-300 ${
-                    scrolled ? "text-gray-600" : "text-gray-300"
-                  }`}
-                >
-                  Pvt Ltd
-                </span>
+              <div className="flex items-center">
+                <img
+                  src={
+                    scrolled
+                      ? "/cinereus-logo-dark.png"
+                      : "/cinereus-logo-light.png"
+                  }
+                  alt="Cinereus Techserv"
+                  className="h-16 w-auto object-contain transition-all duration-300"
+                />
               </div>
             </Link>
           </motion.div>
