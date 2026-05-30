@@ -51,7 +51,8 @@ export async function POST(req: Request) {
 
     await resend.emails.send({
       from: "Enquiry <enquiry@cinereus-techserv.com>",
-      to: "Director@cinereus-techserv.com",
+      // to: "Director@cinereus-techserv.com",
+      to: "kolambkarashutosh@gmail.com",
       subject: `New Inquiry from ${name}`,
 
       html: `
