@@ -98,6 +98,7 @@ export default function AboutPage() {
       </section>
 
       {/* Leadership */}
+      {/* Leadership */}
       <section className="bg-gray-50 py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <FadeUp delay={0.05}>
@@ -106,56 +107,62 @@ export default function AboutPage() {
                 Leadership
               </span>
               <h2 className="font-display text-3xl lg:text-4xl font-bold text-gray-900">
-                Meet Our Directors
+                Meet Our Director
               </h2>
+              <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+                Driving innovation and delivering future-ready technology
+                solutions across hospitality, education, enterprise, and
+                government sectors.
+              </p>
             </div>
           </FadeUp>
-          <StaggerParent className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {/* Director 1 */}
-            <StaggerChild
-              key="abhishek"
-              className="bg-white border border-gray-200 rounded-2xl p-8 hover:-translate-y-1 transition-all duration-300"
-            >
-              <div className="w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center mb-5">
-                <span className="font-display text-white text-2xl font-bold">
-                  A
-                </span>
-              </div>
-              <h3 className="font-display text-xl font-bold text-gray-900 mb-1">
-                Abhishek Durgaprasad Tambulwadkar
-              </h3>
-              <p className="text-gray-500 text-sm mb-4 font-medium">Director</p>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                An entrepreneur and technology consultant with deep expertise in
-                Government &amp; GPS projects, Edu-Tech, Health-Tech, and Cyber
-                Forensics &amp; Security. Holds an MBA from Symbiosis Institute
-                of Telecom Management. Previously Managing Partner at Digint
-                Info Solutions and implementation partner at Apollo Micro
-                Systems Limited.
-              </p>
-            </StaggerChild>
 
-            {/* Director 2 */}
-            <StaggerChild
-              key="vrushanka"
-              className="bg-white border border-gray-200 rounded-2xl p-8 hover:-translate-y-1 transition-all duration-300"
-            >
-              <div className="w-16 h-16 bg-gray-600 rounded-full flex items-center justify-center mb-5">
-                <span className="font-display text-white text-2xl font-bold">
-                  V
-                </span>
+          <div className="max-w-4xl mx-auto">
+            <StaggerChild className="bg-white border border-gray-200 rounded-2xl p-10 shadow-sm hover:shadow-lg transition-all duration-300">
+              <div className="flex flex-col md:flex-row gap-8 items-start">
+                {/* Profile */}
+                <div className="flex-shrink-0">
+                  <div className="w-24 h-24 bg-gray-800 rounded-full flex items-center justify-center">
+                    <span className="font-display text-white text-4xl font-bold">
+                      A
+                    </span>
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div>
+                  <h3 className="font-display text-2xl font-bold text-gray-900 mb-2">
+                    Abhishek Durgaprasad Tambulwadkar
+                  </h3>
+
+                  <p className="text-gray-500 font-medium mb-5">
+                    Founder & Director
+                  </p>
+
+                  <p className="text-gray-600 leading-relaxed mb-4">
+                    Abhishek Durgaprasad Tambulwadkar is an entrepreneur and
+                    technology consultant with deep expertise in Government &
+                    GPS projects, Edu-Tech, Health-Tech, and Cyber Forensics &
+                    Security.
+                  </p>
+
+                  <p className="text-gray-600 leading-relaxed mb-4">
+                    He holds an MBA from Symbiosis Institute of Telecom
+                    Management and has previously served as Managing Partner at
+                    Digint Info Solutions and as an implementation partner for
+                    Apollo Micro Systems Limited.
+                  </p>
+
+                  <p className="text-gray-600 leading-relaxed">
+                    His strategic vision, industry expertise, and commitment to
+                    innovation help organizations adopt reliable, scalable, and
+                    future-ready technology solutions tailored to their business
+                    needs.
+                  </p>
+                </div>
               </div>
-              <h3 className="font-display text-xl font-bold text-gray-900 mb-1">
-                Vrushanka Abhaykumar Nadkerni
-              </h3>
-              <p className="text-gray-500 text-sm mb-4 font-medium">
-                Co-Director
-              </p>
-              <p className="text-gray-400 text-sm leading-relaxed italic">
-                Bio coming soon. Contact us for more information.
-              </p>
             </StaggerChild>
-          </StaggerParent>
+          </div>
         </div>
       </section>
 
