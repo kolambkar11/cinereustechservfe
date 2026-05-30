@@ -17,6 +17,7 @@ export const contactSchema = z.object({
     .string()
     .min(10, "Message must be at least 10 characters")
     .max(1000),
+  captchaToken: z.string().min(1),
 });
 
 export type ContactFormData = z.infer<typeof contactSchema>;

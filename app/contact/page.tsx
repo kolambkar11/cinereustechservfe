@@ -4,6 +4,7 @@ import { useState } from "react";
 import { FadeIn, FadeUp, StaggerChild, StaggerParent } from "../animation";
 import type { Metadata } from "next";
 import { contactSchema } from "@/lib/validations/contact";
+import { Turnstile } from "@marsidev/react-turnstile";
 
 const industries = [
   "Hospitality",
@@ -28,6 +29,7 @@ export default function ContactPage() {
     enquiryType: "",
     message: "",
   });
+  const [captchaToken, setCaptchaToken] = useState("");
 
   const enquiryTypes = ["Sales", "Rental", "Implementation"];
 
@@ -39,10 +41,17 @@ export default function ContactPage() {
 
   const handleSubmit = async (e: React.MouseEvent) => {
     e.preventDefault();
+    if (!captchaToken) {
+      alert("Please complete CAPTCHA");
+      return;
+    }
 
     setErrors({});
 
-    const result = contactSchema.safeParse(form);
+    const result = contactSchema.safeParse({
+      ...form,
+      captchaToken,
+    });
 
     if (!result.success) {
       const fieldErrors: Record<string, string> = {};
@@ -66,7 +75,10 @@ export default function ContactPage() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          ...form,
+          captchaToken,
+        }),
       });
 
       if (response.ok) {
@@ -303,7 +315,12 @@ export default function ContactPage() {
                         )}
                       </div>
                     </StaggerChild>
-
+                    <Turnstile
+                      siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+                      onSuccess={(token) => {
+                        setCaptchaToken(token);
+                      }}
+                    />
                     <button
                       onClick={handleSubmit}
                       disabled={loading}

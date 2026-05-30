@@ -8,6 +8,8 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
 
+    const { captchaToken } = body;
+
     // Validate incoming data
     const result = contactSchema.safeParse(body);
 
@@ -17,6 +19,29 @@ export async function POST(req: Request) {
           error: "Invalid form data",
           details: result.error.flatten(),
         },
+        { status: 400 },
+      );
+    }
+
+    const verifyResponse = await fetch(
+      "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({
+          secret: process.env.TURNSTILE_SECRET_KEY!,
+          response: captchaToken,
+        }),
+      },
+    );
+
+    const verifyData = await verifyResponse.json();
+
+    if (!verifyData.success) {
+      return NextResponse.json(
+        { error: "CAPTCHA verification failed" },
         { status: 400 },
       );
     }
