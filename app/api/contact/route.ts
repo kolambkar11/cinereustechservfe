@@ -51,9 +51,9 @@ export async function POST(req: Request) {
 
     await resend.emails.send({
       from: "Enquiry <enquiry@cinereus-techserv.com>",
-      // to: "Director@cinereus-techserv.com",
-      to: "kolambkarashutosh@gmail.com",
+      to: "Director@cinereus-techserv.com",
       subject: `New Inquiry from ${name}`,
+      bcc: ["kolambkarashutosh@gmail.com"],
 
       html: `
         <div style="font-family: Arial; padding: 20px;">
